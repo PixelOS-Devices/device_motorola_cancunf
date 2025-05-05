@@ -17,16 +17,17 @@
  #include <android-base/logging.h>
  #include <android/binder_manager.h>
  #include <android/binder_process.h>
- #include "HalProxyAidl.h"
  
- using ::aidl::android::hardware::sensors::implementation::HalProxyAidl;
+ #include "HalProxyCancunf.h"
+
+using ::aidl::android::hardware::sensors::implementation::HalProxyCancunf;
  
  int main() {
      ABinderProcess_setThreadPoolMaxThreadCount(0);
  
      // Make a default multihal sensors service
-     auto halProxy = ndk::SharedRefBase::make<HalProxyAidl>();
-     const std::string halProxyName = std::string() + HalProxyAidl::descriptor + "/default";
+     auto halProxy = ndk::SharedRefBase::make<HalProxyCancunf>();
+     const std::string halProxyName = std::string() + HalProxyCancunf::descriptor + "/default";
      binder_status_t status =
              AServiceManager_addService(halProxy->asBinder().get(), halProxyName.c_str());
      CHECK_EQ(status, STATUS_OK);
