@@ -376,7 +376,7 @@ PRODUCT_PACKAGES += \
 
 # Sensors
 PRODUCT_PACKAGES += \
-    android.hardware.sensors@2.1-service.cancunf-multihal
+    android.hardware.sensors-service.cancunf-multihal
 
 # Shipping API level
 PRODUCT_SHIPPING_API_LEVEL := 33

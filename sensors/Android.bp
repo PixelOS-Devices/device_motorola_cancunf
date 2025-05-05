@@ -13,13 +13,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-package {
-    // See: http://go/android-license-faq
-    default_applicable_licenses: ["Android-Apache-2.0"],
-}
-
 cc_binary {
-    name: "android.hardware.sensors@2.1-service.cancunf-multihal",
+    name: "android.hardware.sensors-service.cancunf-multihal",
     defaults: [
         "hidl_defaults",
     ],
@@ -28,11 +23,12 @@ cc_binary {
     relative_install_path: "hw",
     srcs: [
         "service.cpp",
-        "HalProxy.cpp",
-        "HalProxyCallback.cpp",
+        "HalProxyAidl.cpp",
+        "ConvertUtils.cpp",
     ],
-    init_rc: ["android.hardware.sensors@2.1-service.cancunf-multihal.rc"],
-    vintf_fragments: ["android.hardware.sensors@2.1-service.cancunf-multihal.xml"],
+    local_include_dirs: ["include"],
+    init_rc: ["android.hardware.sensors-service.cancunf-multihal.rc"],
+    vintf_fragments: ["android.hardware.sensors-service.cancunf-multihal.xml"],
     header_libs: [
         "android.hardware.sensors@2.X-shared-utils",
     ],
@@ -40,7 +36,9 @@ cc_binary {
         "android.hardware.sensors@2.0",
         "android.hardware.sensors@2.0-ScopedWakelock",
         "android.hardware.sensors@2.1",
+        "android.hardware.sensors-V3-ndk",
         "libbase",
+        "libbinder_ndk",
         "libcutils",
         "libfmq",
         "libhidlbase",
@@ -51,6 +49,7 @@ cc_binary {
     static_libs: [
         "android.hardware.sensors@1.0-convert",
         "android.hardware.sensors@2.X-multihal",
+        "libaidlcommonsupport",
     ],
 }
 
